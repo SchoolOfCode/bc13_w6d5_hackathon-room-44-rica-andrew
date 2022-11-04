@@ -20,6 +20,7 @@ describe("add new todo", () => {
   });
   it('click create', () => {
     cy.get('#new-todo > button')
+      .wait(500)
       .click()
   })
   it('added to DOM', () => {
@@ -33,6 +34,7 @@ describe("add second todo", () => {
     cy.get(':nth-child(1) > input')
       .click()
       .type('new todo item')
+      .wait(300)
       .should('have.value', 'new todo item')
   });
   it('add date', () => {
@@ -44,6 +46,7 @@ describe("add second todo", () => {
   });
   it('click create', () => {
     cy.get('#new-todo > button')
+      .wait(500)
       .click()
   })
   it('added to DOM', () => {
@@ -54,17 +57,21 @@ describe("add second todo", () => {
 
 describe('deletes item', () => {
   it('click delete', () => {
+    cy.wait(500)
     cy.get(':nth-child(5) > button')
-    .wait(500)
     .click()
   });
 });
 
 describe('reload page', () => {
   it('reload', () => {
+    cy.wait(300)
     cy.reload();
     cy.get('#todos')
       .should('contain.text','new todo item')
+    cy.wait(5000, { timeout: 10000 })
+    cy.get(':nth-child(5) > button')
+      .click()
   });
 });
 /*
