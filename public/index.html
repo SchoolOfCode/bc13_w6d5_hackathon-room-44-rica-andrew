@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todos</title>
+    <title>🦩 Todos 🦩</title>
     <link rel="stylesheet" href="css/index.css" />
     <script src="js/index.js" defer type="module"></script>
   </head>
   <body>
     <header>
-      <h1>Todos!</h1>
-      <p>Yet another app to keep track of all those things you said you'd do</p>
+      <section id="head">
+        <h1>To-dos!</h1>
+        <p>Yet another app to keep track of all those things you said you'd do</p>
+      </section>
     </header>
     <main>
-      <section>
+      <section class="mainForm">
         <h3>Create a new todo</h3>
         <form id="new-todo">
           <label>
@@ -30,10 +32,10 @@
             Completion date
             <input name="completionDate" type="date" required />
           </label>
-          <button title="Create a new todo">➕ Create!</button>
+          <button id='createButton' title="Create a new todo">➕ Create!</button>
         </form>
       </section>
-      <section>
+      <section class="mainForm">
         <h3>Existing todos</h3>
         <p id="summary"></p>
         <ul id="todos"></ul>
