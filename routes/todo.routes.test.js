@@ -1,10 +1,20 @@
 import supertest from "supertest";
 import app from "../app.js";
-import { expect, test } from "@jest/globals";
+import { expect, test, beforeEach, afterAll } from "@jest/globals";
+import { resetAllTables } from '../db/scripts/helpers.js'
+import { pool } from '../db/index.js'
 
 // afterAll (async function () {
 //     await pool.end();
 // });
+beforeEach(() => {
+ return resetAllTables()
+});
+
+afterAll(() => {
+  resetAllTables(),
+  pool.end()
+});
 
 describe("get the whole toDo List", () => {
   test("Get /api/todos", async function () {
@@ -51,8 +61,8 @@ test("Missing/invalid Post /api/todos", async function () {
 });
 
 describe("delete a task from the toDo List", () => {
-test("Delete /api/todos/5", async function () {
-    const idToDelete = 15;
+test("Delete /api/todos/2", async function () {
+    const idToDelete = 2;
     const response = await supertest(app).delete(`/api/todos/${idToDelete}`);
     expect(response.status).toBe(200);
 expect(response.body).toStrictEqual({
